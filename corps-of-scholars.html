@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CORPS OF SCHOLARS – Explore Knowledge. Engineer Tomorrow.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#070b24;--navy2:#0e1440;--blue:#2f6bff;--violet:#8b5cff;--cyan:#22d3ee;--magenta:#ec4899;--orange:#fb923c;--yellow:#facc15;
+--paper:#f5f7fc;--card:#fff;--ink:#0d1330;--mute:#5a6285;--line:#dfe4f2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b1030;--card:#131a4a;--ink:#eef1ff;--mute:#a4acd6;--line:#252d66}}
+:root[data-theme="dark"]{--paper:#0b1030;--card:#131a4a;--ink:#eef1ff;--mute:#a4acd6;--line:#252d66}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;font:400 17px/1.6 "DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink)}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.12;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(7,11,36,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1)}
+.nav{max-width:1240px;margin:auto;display:flex;align-items:center;gap:18px;padding:12px 20px;color:#fff}
+.logo{font:800 20px Sora,sans-serif;text-decoration:none;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+.logo i{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 200deg,var(--cyan),var(--violet),var(--magenta),var(--orange),var(--cyan));box-shadow:0 0 16px var(--violet)}
+nav{display:flex;gap:4px;margin-left:auto;align-items:center}
+nav a{text-decoration:none;font-size:14px;padding:8px 10px;border-radius:8px;color:#cdd4ff}
+nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.btn{display:inline-block;border:0;cursor:pointer;font:700 15px "DM Sans",sans-serif;padding:13px 22px;border-radius:999px;text-decoration:none;color:#fff;background:linear-gradient(120deg,var(--blue),var(--violet));box-shadow:0 8px 26px rgba(79,70,229,.4)}
+.btn.alt{background:linear-gradient(120deg,var(--orange),var(--magenta));box-shadow:0 8px 26px rgba(236,72,153,.35)}
+.btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.4);box-shadow:none}
+.btn.sm{padding:8px 16px;font-size:14px}
+#menu{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:8px;padding:8px 12px;font-size:15px}
+@media(max-width:1080px){#menu{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;background:var(--navy);padding:12px 20px 20px;margin:0}nav.open{display:flex}}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 40%,#2a1a7a 0%,var(--navy2) 38%,var(--navy) 75%);color:#fff;min-height:calc(100vh - 62px);display:grid;align-items:center}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;max-width:1240px;margin:auto;padding:70px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;width:100%}
+.hero h1{font-size:clamp(40px,6.2vw,76px);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{background:linear-gradient(100deg,var(--cyan),var(--violet) 50%,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c6cdf5;font-size:19px;max-width:34em;margin:22px 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.planet-wrap{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.planet{position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 32% 28%,#9fe9ff 0%,#4f7bff 30%,#6a2fd8 62%,#1a0b4f 100%);box-shadow:0 0 90px rgba(99,102,241,.7),inset -26px -20px 50px rgba(0,0,20,.6);animation:spin 40s linear infinite}
+.planet::after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(100deg,transparent 0 22px,rgba(255,255,255,.07) 22px 26px)}
+.ring{position:absolute;inset:4% -4%;border-radius:50%;border:3px solid rgba(34,211,238,.55);transform:rotateX(74deg) rotate(-12deg);box-shadow:0 0 22px rgba(34,211,238,.5)}
+.ring.b{inset:12% -14%;border-color:rgba(236,72,153,.5);box-shadow:0 0 22px rgba(236,72,153,.4);transform:rotateX(74deg) rotate(10deg)}
+@keyframes spin{to{background-position:300px 0}}
+.eq{position:absolute;font:700 clamp(14px,2vw,20px) Sora,sans-serif;padding:7px 12px;border-radius:12px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);animation:fl 7s ease-in-out infinite;white-space:nowrap}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.chip3{display:inline-block;margin-top:26px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);font-size:14px;color:#dfe4ff}
+section{padding:84px 20px}
+.wrap{max-width:1240px;margin:auto}
+.lead{color:var(--mute);max-width:40em;margin:14px 0 0}
+h2{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.015em}
+.tools{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 8px;align-items:center}
+.tools input{flex:1 1 280px;font:inherit;padding:14px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.f{font:600 14px "DM Sans";padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.f[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.depts{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:22px}
+.d{grid-column:span 2;position:relative;overflow:hidden;border-radius:26px;padding:26px;color:#fff;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--g)}
+.d:nth-child(1),.d:nth-child(2){grid-column:span 3;min-height:300px}
+.d svg{position:absolute;right:-10px;top:-10px;width:190px;height:190px;opacity:.5}
+.d h3{font-size:22px;position:relative}
+.d p{margin:8px 0 16px;font-size:15px;opacity:.92;position:relative;max-width:30em}
+.d .btn{align-self:flex-start;background:rgba(255,255,255,.2);box-shadow:none;border:1px solid rgba(255,255,255,.45);position:relative}
+.d.hide{display:none}
+@media(max-width:860px){.depts{grid-template-columns:1fr}.d,.d:nth-child(1),.d:nth-child(2){grid-column:auto}.hero-in{grid-template-columns:1fr}.planet-wrap{max-width:380px}}
+#results{margin-top:30px;display:none}
+#results h3{font-size:20px;margin-bottom:14px}
+.cl{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.c{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--k);border-radius:14px;padding:13px 16px}
+.c small{color:var(--mute);display:block;font-size:13px}
+.c button{border:0;background:var(--k);color:#fff;border-radius:999px;padding:7px 13px;font:700 13px "DM Sans";cursor:pointer}
+.lab{background:linear-gradient(180deg,var(--navy),#16104a);color:#fff}
+.lab .lead{color:#bcc4f0}
+.labg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:36px}
+.lb{border-radius:20px;padding:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;gap:10px}
+.lb b{font:700 17px Sora}.lb span{font-size:14px;color:#bcc4f0;flex:1}
+.lb .btn{align-self:flex-start}
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:34px}
+.t{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.av{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:800 18px Sora;color:#fff;background:var(--g)}
+.t h3{font-size:18px;margin:12px 0 2px}.t p{margin:0;color:var(--mute);font-size:14px}
+.t .row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-weight:700}
+.lv{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:30px}
+.lv div{padding:22px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.lv b{font:700 18px Sora;display:block;margin-bottom:4px}.lv span{color:var(--mute);font-size:14px}
+footer{background:var(--navy);color:#aab3e6;padding:56px 20px 40px;font-size:14px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px}
+@media(max-width:700px){.fg{grid-template-columns:1fr 1fr}}
+footer a{display:block;text-decoration:none;padding:3px 0}footer a:hover{color:#fff}
+footer h4{color:#fff;font-family:Sora;margin:0 0 10px;font-size:15px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;background:#fff;color:#0d1330;padding:13px 20px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.35);max-width:90vw;transition:.25s;z-index:80;font-weight:500;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="logo" href="#top"><svg width="30" height="34" viewBox="0 0 48 54" aria-hidden="true"><path d="M24 2l19 6v17c0 13-8 21-19 27C13 46 5 38 5 25V8z" fill="#0e1440" stroke="#facc15" stroke-width="3" stroke-linejoin="round"/><polygon points="24,8.5 25.4,12.1 29.2,12.3 26.2,14.7 27.2,18.5 24,16.3 20.8,18.5 21.8,14.7 18.8,12.3 22.6,12.1" fill="#facc15"/><path d="M13 25l11 6 11-6" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 32l11 6 11-6" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 40c4-2 7-2 9 0 2-2 5-2 9 0v6c-4-2-7-2-9 0-2-2-5-2-9 0z" fill="#fff"/></svg>CORPS OF SCHOLARS</a>
+<button id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+<nav id="nav" aria-label="Main">
+<a href="#top">Home</a><a href="#explore">Explore Courses</a><a href="#depts">Engineering</a><a href="#depts">Sciences</a><a href="#tutors">Find a Tutor</a><a href="#live">Live Classes</a><a href="#resources">Resources</a><a href="#about">About</a>
+<a href="#" data-soon="Login opens in Stage 3 with Supabase authentication (student and teacher roles).">Login</a>
+<a class="btn sm" href="#" data-soon="Sign-up opens in Stage 3 with Supabase authentication.">Sign Up</a>
+</nav></div></header>
+
+<main id="top">
+<div class="hero">
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="hero-in">
+<div>
+<h1>Where Curiosity Meets <span>Innovation.</span></h1>
+<p>From school fundamentals to advanced engineering, computer science, electronics and scientific research, unlock your potential with expert-led online education.</p>
+<div class="cta">
+<a class="btn" href="#explore">Explore Courses</a>
+<a class="btn alt" href="#tutors">Find Your Expert Tutor</a>
+<a class="btn ghost" href="#" data-soon="Start Learning will take new students to registration and a free demo class in Stage 3.">Start Learning</a>
+</div>
+<span class="chip3">Grade 7 to postgraduate · 6 departments · live one-to-one and group classes</span>
+</div>
+<div class="planet-wrap" aria-hidden="true">
+<div class="ring b"></div><div class="planet"></div><div class="ring"></div>
+<span class="eq" style="left:0;top:12%;animation-delay:-1s">E = mc²</span>
+<span class="eq" style="right:0;top:6%;animation-delay:-3s;color:var(--cyan)">∇·B = 0</span>
+<span class="eq" style="left:4%;bottom:14%;animation-delay:-5s;color:var(--yellow)">∫ eˣ dx</span>
+<span class="eq" style="right:2%;bottom:20%;animation-delay:-2s;color:var(--magenta)">Y = f(Wx + b)</span>
+<span class="eq" style="left:38%;top:-2%;animation-delay:-4s;color:var(--orange)">101101</span>
+</div></div></div>
+
+<section id="explore"><div class="wrap">
+<h2>Explore your world of knowledge</h2>
+<p class="lead">Search every course across all departments, or filter by department. Pick a course to request a free demo class.</p>
+<div class="tools">
+<input id="q" type="search" placeholder="Search courses, e.g. Python, VLSI, Genetics" aria-label="Search courses">
+</div>
+<div class="tools" id="chips" role="group" aria-label="Filter by department" style="margin-top:0"></div>
+<div id="results" aria-live="polite"><h3 id="rt"></h3><div class="cl" id="cl"></div></div>
+<div class="depts" id="depts"></div>
+</div></section>
+
+<section class="lab" id="lab"><div class="wrap">
+<h2>Corps of Scholars Discovery Lab</h2>
+<p class="lead">Learn by touching the idea. Each experience runs in the browser, and the first ones arrive in Stage 2.</p>
+<div class="labg" id="labg"></div>
+</div></section>
+
+<section id="tutors"><div class="wrap">
+<h2>Learn from tutors who have done the work</h2>
+<p class="lead">Compare qualifications, price, languages and open time slots, then book a free demo before you commit.</p>
+<div class="tg" id="tg"></div>
+</div></section>
+
+<section id="live" style="background:var(--card)"><div class="wrap">
+<h2>Live classes with everything in one room</h2>
+<p class="lead">Video, whiteboard, screen sharing, chat, recordings and attendance. The room is built to plug into a video provider such as Zoom, Jitsi or LiveKit.</p>
+<div class="lv">
+<div><b>Live video and screen share</b><span>Integration placeholder for your chosen provider.</span></div>
+<div><b>Digital whiteboard</b><span>Draw equations and circuits together.</span></div>
+<div><b>Doubt-clearing sessions</b><span>Short slots after class for questions.</span></div>
+<div><b>Recordings and attendance</b><span>Replay classes and track who joined.</span></div>
+<div><b>Scholar AI study assistant</b><span>Ready for an API connection. No AI service is connected yet.</span></div>
+</div></div></section>
+
+<section id="resources"><div class="wrap">
+<h2>Free resources and community</h2>
+<p class="lead">Daily brain challenge, coding arena, science quiz zone, leaderboard, scholarships, internships, placement preparation and research mentoring.</p>
+<div class="cta" style="margin-top:26px">
+<button class="btn" data-soon="The Daily Brain Challenge launches in Stage 4.">Try the daily challenge</button>
+<button class="btn alt" data-soon="Scholarship listings arrive in Stage 4.">See scholarships</button>
+</div></div></section>
+</main>
+
+<footer id="about"><div class="wrap fg">
+<div><a class="logo" href="#top" style="color:#fff"><svg width="30" height="34" viewBox="0 0 48 54" aria-hidden="true"><path d="M24 2l19 6v17c0 13-8 21-19 27C13 46 5 38 5 25V8z" fill="#0e1440" stroke="#facc15" stroke-width="3" stroke-linejoin="round"/><polygon points="24,8.5 25.4,12.1 29.2,12.3 26.2,14.7 27.2,18.5 24,16.3 20.8,18.5 21.8,14.7 18.8,12.3 22.6,12.1" fill="#facc15"/><path d="M13 25l11 6 11-6" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 32l11 6 11-6" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 40c4-2 7-2 9 0 2-2 5-2 9 0v6c-4-2-7-2-9 0-2-2-5-2-9 0z" fill="#fff"/></svg>CORPS OF SCHOLARS</a><p>Explore Knowledge. Engineer Tomorrow.<br>International online tutoring from Grade 7 to professional level.</p></div>
+<div><h4>Learn</h4><a href="#explore">Courses</a><a href="#tutors">Tutors</a><a href="#lab">Discovery Lab</a></div>
+<div><h4>Teach</h4><a href="#" data-soon="Teacher registration opens in Stage 3.">Become a tutor</a><a href="#" data-soon="Teacher dashboard arrives in Stage 3.">Teacher dashboard</a></div>
+<div><h4>Company</h4><a href="#" data-soon="About and Contact pages arrive in Stage 3.">About us</a><a href="#" data-soon="About and Contact pages arrive in Stage 3.">Contact us</a><a href="#" data-soon="Pricing page arrives in Stage 3.">Pricing</a></div>
+</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const D=[
+{id:"cs",n:"Computer Science & IT",k:"#2f6bff",g:"linear-gradient(135deg,#1b3bd6,#22d3ee)",d:"Programming, AI, data and the systems behind modern software.",c:["Computer Programming","C and C++","Java","Python","Data Structures and Algorithms","Operating Systems","Database Management Systems","Computer Networks","Software Engineering","Artificial Intelligence","Machine Learning","Deep Learning","Data Science","Cloud Computing","Cybersecurity","Web Development","Mobile Application Development","Internet of Things","Blockchain Technology"]},
+{id:"ece",n:"Electronics & Communication",k:"#0e9f8e",g:"linear-gradient(135deg,#0b6e6e,#22d3ee 120%)",d:"Circuits, chips, signals and wireless systems, from analog to VLSI.",c:["Analog Electronics","Digital Electronics","Electronic Devices and Circuits","Signals and Systems","Digital Signal Processing","Microprocessors","Microcontrollers","Embedded Systems","VLSI Design","CMOS Technology","Semiconductor Devices","Control Systems","Communication Systems","Wireless Communication","Antenna and Wave Propagation","Electromagnetic Theory","FPGA Design","Internet of Things"]},
+{id:"phy",n:"Physical Sciences",k:"#7c3aed",g:"linear-gradient(135deg,#3b1d9e,#ec4899)",d:"From atoms to galaxies: mechanics, quantum theory and astrophysics.",c:["Classical Mechanics","Quantum Mechanics","Electromagnetism","Thermodynamics","Optics","Solid State Physics","Nuclear Physics","Atomic and Molecular Physics","Astrophysics","Electronics Physics","Mathematical Physics","Computational Physics","Quantum Computing"]},
+{id:"mat",n:"Mathematical Sciences",k:"#ea580c",g:"linear-gradient(135deg,#c2410c,#facc15)",d:"Proof, calculation and modelling for engineers and researchers.",c:["Engineering Mathematics","Linear Algebra","Calculus","Differential Equations","Probability and Statistics","Discrete Mathematics","Numerical Methods","Complex Analysis","Real Analysis","Operations Research","Optimization Techniques"]},
+{id:"bio",n:"Life Sciences",k:"#db2777",g:"linear-gradient(135deg,#be185d,#fb923c)",d:"Cells, genes and molecules, with a focus on lab thinking.",c:["Biotechnology","Biochemistry","Microbiology","Genetics","Molecular Biology","Cell Biology","Bioinformatics","Human Physiology","Immunology","Environmental Science"]},
+{id:"eng",n:"Engineering Disciplines",k:"#475bd1",g:"linear-gradient(135deg,#1f2a7a,#8b5cff)",d:"Design, build and test across the core engineering branches.",c:["Mechanical Engineering","Civil Engineering","Electrical Engineering","Chemical Engineering","Aerospace Engineering","Biomedical Engineering","Mechatronics","Robotics","Automobile Engineering"]}];
+const ICON={cs:'<path d="M20 70l30-30-30-30M60 80h40" />',ece:'<path d="M10 50h30l10-30 20 60 10-30h30"/>',phy:'<circle cx="60" cy="60" r="12"/><ellipse cx="60" cy="60" rx="50" ry="18"/><ellipse cx="60" cy="60" rx="50" ry="18" transform="rotate(60 60 60)"/>',mat:'<path d="M15 100V15M15 100h90M15 85c30-10 40-60 90-70"/>',bio:'<path d="M40 10c40 20-40 40 0 60s0 40 40 40M80 10c-40 20 40 40 0 60"/>',eng:'<circle cx="60" cy="60" r="20"/><path d="M60 10v20M60 90v20M10 60h20M90 60h20M25 25l14 14M81 81l14 14M95 25L81 39M39 81L25 95"/>'};
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),3600)};
+document.addEventListener("click",e=>{const s=e.target.closest("[data-soon]");if(s){e.preventDefault();toast(s.dataset.soon)}});
+$("#menu").onclick=e=>{const o=$("#nav").classList.toggle("open");e.target.setAttribute("aria-expanded",o)};
+$("#nav").onclick=e=>{if(e.target.closest("a"))$("#nav").classList.remove("open")};
+
+let dept="all";
+$("#depts").innerHTML=D.map(d=>`<article class="d" data-id="${d.id}" style="--g:${d.g}"><svg viewBox="0 0 120 120" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round">${ICON[d.id]}</svg><h3>${d.n}</h3><p>${d.d} ${d.c.length} courses.</p><button class="btn sm" data-dept="${d.id}">Browse ${d.c.length} courses</button></article>`).join("");
+$("#chips").innerHTML=[["all","All departments"],...D.map(d=>[d.id,d.n])].map(([i,n])=>`<button class="f" data-chip="${i}" aria-pressed="${i==="all"}">${n}</button>`).join("");
+function render(){
+ const q=$("#q").value.trim().toLowerCase(),r=[];
+ D.forEach(d=>{if(dept!=="all"&&dept!==d.id)return;d.c.forEach(c=>{if(!q||c.toLowerCase().includes(q))r.push([c,d])})});
+ document.querySelectorAll(".d").forEach(x=>x.classList.toggle("hide",dept!=="all"&&x.dataset.id!==dept));
+ const on=q||dept!=="all";$("#results").style.display=on?"block":"none";
+ $("#rt").textContent=r.length?`${r.length} course${r.length>1?"s":""} found`:"No courses match. Try a shorter word or choose All departments.";
+ $("#cl").innerHTML=r.map(([c,d])=>`<div class="c" style="--k:${d.k}"><div>${c}<small>${d.n}</small></div><button data-demo="${c}">Free demo</button></div>`).join("");
+ document.querySelectorAll("[data-chip]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.chip===dept));
+}
+$("#q").oninput=render;
+document.addEventListener("click",e=>{
+ const c=e.target.closest("[data-chip]");if(c){dept=c.dataset.chip;render()}
+ const b=e.target.closest("[data-dept]");if(b){dept=b.dataset.dept;render();$("#results").scrollIntoView({behavior:"smooth"})}
+ const m=e.target.closest("[data-demo]");if(m)toast(`Demo request for ${m.dataset.demo} noted. Booking and payment connect in Stage 3.`)});
+
+const LAB=[["3D Solar System Explorer","Orbit the planets and compare their sizes."],["Interactive Human Cell","Zoom into organelles and see what each does."],["Digital Circuit Simulator","Wire gates and watch the truth table update."],["Physics Experiment Visualizer","Change mass, angle and speed in motion experiments."],["Mathematical Graph Explorer","Plot functions and slide parameters live."],["Interactive Coding Playground","Run short Python and JavaScript exercises."],["Virtual Robotics Lab","Program a robot arm to pick and place."],["3D Molecular Structures","Rotate molecules and measure bond angles."]];
+$("#labg").innerHTML=LAB.map(([t,d])=>`<div class="lb"><b>${t}</b><span>${d}</span><button class="btn sm" data-soon="${t} is built in Stage 2 (Three.js and canvas simulations).">Launch preview</button></div>`).join("");
+const T=[["Dr. Ananya Rao","AN","Ph.D. IIT Madras · 11 years","VLSI Design, Digital Electronics, Embedded Systems",28,4.9,"English, Hindi, Telugu","linear-gradient(135deg,#0b6e6e,#22d3ee)"],["Prof. Marcus Lindqvist","ML","M.Sc. Physics, KTH · 9 years","Quantum Mechanics, Astrophysics, Thermodynamics",34,4.8,"English, Swedish","linear-gradient(135deg,#3b1d9e,#ec4899)"],["Sara Okafor","SO","M.Tech Computer Science · 7 years","Python, Data Structures, Machine Learning",22,4.9,"English, Yoruba","linear-gradient(135deg,#1b3bd6,#22d3ee)"]];
+$("#tg").innerHTML=T.map(t=>`<article class="t"><div class="av" style="--g:${t[7]}">${t[1]}</div><h3>${t[0]}</h3><p>${t[2]}</p><p style="margin-top:8px;color:var(--ink)">${t[3]}</p><p style="margin-top:6px">Speaks ${t[6]}</p><div class="row"><span>$${t[4]}/hr · ★ ${t[5]}</span><button class="btn sm" data-soon="Free demo booking with ${t[0]} connects to the scheduler in Stage 3. Profile shown is sample data.">Book free demo</button></div></article>`).join("");
+</script>
+<script>
+// Starfield + drifting dust, paused when hero is off-screen
+const cv=document.getElementById("sky"),cx=cv.getContext("2d");let W,H,S=[],run=true,mx=0,my=0;
+function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;S=Array.from({length:Math.min(160,W/6)},()=>({x:Math.random()*W,y:Math.random()*H,z:Math.random()*1.5+.3,c:["#fff","#8be9ff","#c4a8ff","#ffd0e8"][Math.random()*4|0]}))}
+addEventListener("resize",size);size();
+cv.parentElement.addEventListener("pointermove",e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+new IntersectionObserver(e=>run=e[0].isIntersecting).observe(cv);
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+(function f(){if(run){cx.clearRect(0,0,W,H);S.forEach(s=>{if(!still){s.x-=.08*s.z;if(s.x<0)s.x=W}cx.fillStyle=s.c;cx.globalAlpha=.4+.5*Math.abs(Math.sin(s.x*.01+s.z));cx.beginPath();cx.arc(s.x-mx*14*s.z,s.y-my*14*s.z,s.z,0,7);cx.fill()})}requestAnimationFrame(f)})();
+</script>
+</body>
+</html>

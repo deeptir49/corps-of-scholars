@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Corps of Scholars – Student and Teacher Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#070b24;--blue:#2f6bff;--violet:#8b5cff;--cyan:#22d3ee;--mag:#ec4899;--org:#fb923c;--yel:#facc15;--ok:#16a34a;
+--paper:#f5f7fc;--card:#fff;--ink:#0d1330;--mute:#5a6285;--line:#dfe4f2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b1030;--card:#131a4a;--ink:#eef1ff;--mute:#a4acd6;--line:#252d66}}
+:root[data-theme="dark"]{--paper:#0b1030;--card:#131a4a;--ink:#eef1ff;--mute:#a4acd6;--line:#252d66}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;font:400 16px/1.55 "DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink)}
+h1,h2,h3{font-family:Sora,sans-serif;margin:0;line-height:1.15}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--navy);color:#fff}
+.nav{max-width:1180px;margin:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 18px}
+.logo{font:800 19px Sora;display:flex;gap:8px;align-items:center;margin-right:auto}
+.logo i{width:24px;height:24px;border-radius:50%;background:conic-gradient(var(--cyan),var(--violet),var(--mag),var(--org),var(--cyan))}
+.nav a{color:#cdd4ff;text-decoration:none;padding:7px 11px;border-radius:8px;font-size:14px}
+.nav a.on,.nav a:hover{background:rgba(255,255,255,.14);color:#fff}
+main{max-width:1180px;margin:auto;padding:30px 18px 70px}
+.btn{border:0;cursor:pointer;font:700 15px "DM Sans";padding:11px 20px;border-radius:999px;color:#fff;background:linear-gradient(120deg,var(--blue),var(--violet))}
+.btn.o{background:none;color:var(--ink);border:1.5px solid var(--line)}.btn.sm{padding:7px 14px;font-size:13px}
+.grid{display:grid;gap:16px}.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.stat b{font:800 30px Sora;display:block}.stat span{color:var(--mute);font-size:14px}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 5px}
+input,select,textarea{width:100%;font:inherit;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.err{color:#dc2626;font-size:13px;min-height:18px;margin-top:3px}
+.bar{height:9px;border-radius:9px;background:var(--line);overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--line)}
+.note{font-size:13px;color:var(--mute);background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:10px 13px;margin-top:14px}
+.seg{display:flex;gap:8px;margin:6px 0}.seg button{flex:1}.seg .on{background:var(--ink);color:var(--paper)}
+.view{display:none}.view.on{display:block}
+li{padding:9px 0;border-bottom:1px solid var(--line);list-style:none}ul{margin:10px 0 0;padding:0}
+#chat{height:380px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px}
+.m{max-width:80%;padding:10px 14px;border-radius:16px}.m.u{align-self:flex-end;background:var(--blue);color:#fff}.m.a{background:var(--paper);border:1px solid var(--line)}
+dialog{border:0;border-radius:22px;padding:24px;background:var(--card);color:var(--ink);width:min(440px,92vw)}dialog::backdrop{background:rgba(7,11,36,.6)}
+#toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#fff;color:#0d1330;padding:12px 18px;border-radius:14px;box-shadow:0 10px 36px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.2s;z-index:90;max-width:90vw}#toast.on{opacity:1}
+.hd{margin-bottom:22px}.hd p{color:var(--mute);margin:6px 0 0}
+</style></head><body>
+<header><div class="nav"><span class="logo"><svg width="30" height="34" viewBox="0 0 48 54" aria-hidden="true"><path d="M24 2l19 6v17c0 13-8 21-19 27C13 46 5 38 5 25V8z" fill="#0e1440" stroke="#facc15" stroke-width="3" stroke-linejoin="round"/><polygon points="24,8.5 25.4,12.1 29.2,12.3 26.2,14.7 27.2,18.5 24,16.3 20.8,18.5 21.8,14.7 18.8,12.3 22.6,12.1" fill="#facc15"/><path d="M13 25l11 6 11-6" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 32l11 6 11-6" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 40c4-2 7-2 9 0 2-2 5-2 9 0v6c-4-2-7-2-9 0-2-2-5-2-9 0z" fill="#fff"/></svg>CORPS OF SCHOLARS</span>
+<a href="#login" data-v="login">Login</a><a href="#tutors" data-v="tutors">Find a Tutor</a><a href="#student" data-v="student">Student</a><a href="#teacher" data-v="teacher">Teacher</a><a href="#ai" data-v="ai">Scholar AI</a><a href="#" id="out" hidden>Log out</a></div></header>
+<main>
+<!-- LOGIN -->
+<section class="view" id="v-login"><div class="card" style="max-width:460px;margin:auto">
+<h1 style="font-size:28px" id="lt">Welcome back</h1>
+<div class="seg"><button class="btn o on" data-mode="in">Log in</button><button class="btn o" data-mode="up">Create account</button></div>
+<div class="seg"><button class="btn o on" data-role="student">I’m a student</button><button class="btn o" data-role="teacher">I’m a teacher</button></div>
+<form id="af" novalidate>
+<div id="nmw"><label for="nm">Full name</label><input id="nm" autocomplete="name"><div class="err" id="e-nm"></div></div>
+<label for="em">Email</label><input id="em" type="email" autocomplete="email"><div class="err" id="e-em"></div>
+<label for="pw">Password (8+ characters)</label><input id="pw" type="password" autocomplete="current-password"><div class="err" id="e-pw"></div>
+<button class="btn" style="width:100%;margin-top:12px" id="sub">Log in</button></form>
+<div class="note">Demo mode: your name, email and role are saved only in this browser. Passwords are never stored. Real accounts need Supabase Auth, which connects through a server project with your own keys.</div>
+</div></section>
+
+<!-- STUDENT -->
+<section class="view" id="v-student">
+<div class="hd"><h1 id="sh"></h1><p>Your learning at a glance. Figures are sample data until the database is connected.</p></div>
+<div class="grid g4"><div class="card stat"><b>12.5 h</b><span>Study hours this week</span></div><div class="card stat"><b>9 days</b><span>Learning streak</span></div><div class="card stat"><b>84%</b><span>Average test score</span></div><div class="card stat"><b id="enc">0</b><span>Courses enrolled</span></div></div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>Study hours, last 7 days</h3><svg id="chart" viewBox="0 0 350 160" width="100%" role="img" aria-label="Bar chart of daily study hours"></svg></div>
+<div class="card"><h3>Course progress</h3><div id="prog" style="margin-top:12px"></div></div>
+<div class="card"><h3>Upcoming classes</h3><ul><li class="row"><span>Digital Electronics<br><small>Today, 6:00 PM · Dr. Ananya Rao</small></span><button class="btn sm" data-soon="Live classroom opens when a video provider is connected.">Join</button></li><li class="row"><span>Python Basics<br><small>Tomorrow, 5:30 PM · Sara Okafor</small></span><button class="btn sm" data-soon="Live classroom opens when a video provider is connected.">Join</button></li></ul></div>
+<div class="card"><h3>Enrol in a course</h3><div id="enl"></div></div></div></section>
+
+<!-- TEACHER -->
+<section class="view" id="v-teacher">
+<div class="hd"><h1 id="th"></h1><p>Create courses and schedule classes. Earnings are sample data.</p></div>
+<div class="grid g4"><div class="card stat"><b>$1,240</b><span>Earned this month</span></div><div class="card stat"><b>38</b><span>Active students</span></div><div class="card stat"><b id="cc">0</b><span>Courses created</span></div><div class="card stat"><b>4.9 ★</b><span>Average rating</span></div></div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>Create a course</h3><form id="cf" novalidate><label for="ct">Course title</label><input id="ct"><div class="err" id="e-ct"></div>
+<label for="cl">Level</label><select id="cl"><option>Grade 7–12</option><option>Degree</option><option>Postgraduate</option><option>Professional</option></select>
+<label for="cp">Price per hour (USD)</label><input id="cp" type="number" min="5" max="500"><div class="err" id="e-cp"></div>
+<button class="btn" style="margin-top:10px">Save course</button></form>
+<div class="note">Uploading notes and videos needs file storage (Supabase Storage). That arrives with the database connection.</div></div>
+<div class="card"><h3>Your courses</h3><ul id="tc"></ul><h3 style="margin-top:22px">Students</h3><ul><li class="row">Aarav S. <span class="pill">Grade 11 · Physics</span></li><li class="row">Meera K. <span class="pill">B.Tech · VLSI</span></li><li class="row">Liam P. <span class="pill">M.Sc. · Genetics</span></li></ul></div></div></section>
+
+<!-- TUTORS -->
+<section class="view" id="v-tutors">
+<div class="hd"><h1>Find a tutor</h1><p>Filter by subject, level and budget, then book a free demo.</p></div>
+<div class="card grid g4" style="margin-bottom:16px;align-items:end">
+<div><label for="fs">Subject</label><input id="fs" placeholder="e.g. Python, VLSI"></div>
+<div><label for="fl">Level</label><select id="fl"><option value="">Any</option><option>School</option><option>Degree</option><option>Postgraduate</option></select></div>
+<div><label for="fb">Max price: $<span id="fbv">50</span>/hr</label><input id="fb" type="range" min="10" max="60" value="50"></div></div>
+<div class="grid g4" id="tl" aria-live="polite"></div></section>
+
+<!-- AI -->
+<section class="view" id="v-ai">
+<div class="hd"><h1>Scholar AI</h1><p>Your study assistant. It is not connected to an AI service yet.</p></div>
+<div class="card" style="max-width:760px"><div id="chat"></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0" id="sg"></div>
+<form id="qf" style="display:flex;gap:10px"><input id="qi" placeholder="Ask a question about any subject" aria-label="Your question"><button class="btn">Send</button></form>
+<div class="note">To switch on real answers, add a server route (for example <code>/api/ai</code>) that holds your API key and calls an AI provider, then point <code>askAI()</code> in this file at it. Keys must never be placed in browser code.</div></div></section>
+</main>
+<dialog id="dg"><h2 style="font-size:22px" id="dt"></h2><form id="bf" novalidate><label for="bs">Pick a time slot</label><select id="bs"></select>
+<label for="bn">Your goal (optional)</label><textarea id="bn" rows="2"></textarea>
+<div class="note">Free demo: no payment needed. Paid sessions will use a hosted checkout such as Stripe, so card details never touch this site.</div>
+<div class="row" style="margin-top:16px"><button type="button" class="btn o" id="bc">Cancel</button><button class="btn">Confirm demo</button></div></form></dialog>
+<div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),3600)};
+document.addEventListener("click",e=>{const s=e.target.closest("[data-soon]");if(s)toast(s.dataset.soon)});
+let user=store.get("cm_user",null),mode="in",role="student";
+const VIEWS=["login","tutors","student","teacher","ai"];
+function route(){let v=location.hash.slice(1);if(!VIEWS.includes(v))v=user?(user.role==="teacher"?"teacher":"student"):"login";
+ if(["student","teacher","ai"].includes(v)&&!user){v="login";toast("Log in first to open this page.")}
+ if(v==="student"&&user.role==="teacher")v="teacher";if(v==="teacher"&&user.role==="student")v="student";
+ $$(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));$$(".nav a[data-v]").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+ $$(".nav a[data-v]").forEach(a=>{if(a.dataset.v==="login")a.hidden=!!user;if(a.dataset.v==="student")a.hidden=!user||user.role!=="student";if(a.dataset.v==="teacher")a.hidden=!user||user.role!=="teacher"});
+ $("#out").hidden=!user;if(v==="student")drawStudent();if(v==="teacher")drawTeacher();if(v==="tutors")drawTutors()}
+addEventListener("hashchange",route);
+$("#out").onclick=e=>{e.preventDefault();user=null;store.set("cm_user",null);location.hash="#login";route();toast("You’re logged out.")};
+// auth
+$$("[data-mode]").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;$$("[data-mode]").forEach(x=>x.classList.toggle("on",x===b));$("#nmw").hidden=mode==="in";$("#sub").textContent=mode==="in"?"Log in":"Create account";$("#lt").textContent=mode==="in"?"Welcome back":"Join Corps of Scholars"});
+$$("[data-role]").forEach(b=>b.onclick=()=>{role=b.dataset.role;$$("[data-role]").forEach(x=>x.classList.toggle("on",x===b))});
+$("#nmw").hidden=true;
+$("#af").onsubmit=e=>{e.preventDefault();const n=$("#nm").value.trim(),m=$("#em").value.trim(),p=$("#pw").value;let ok=true;
+ const set=(id,t)=>{$("#e-"+id).textContent=t;if(t)ok=false};
+ set("nm",mode==="up"&&n.length<2?"Enter your full name.":"");set("em",/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)?"":"Enter a valid email, like name@example.com.");set("pw",p.length>=8?"":"Use at least 8 characters.");
+ if(!ok)return;user={name:n||m.split("@")[0],email:m,role};store.set("cm_user",user);$("#pw").value="";location.hash="#"+role;route();toast("Signed in as "+role+" (demo).")};
+// student
+const COURSES=["Python Basics","Digital Electronics","Quantum Mechanics","Linear Algebra","Genetics","Machine Learning"];
+function drawStudent(){$("#sh").textContent="Hello, "+user.name;const en=store.get("cm_enr",["Python Basics","Digital Electronics"]);$("#enc").textContent=en.length;
+ const d=[1.5,2,0.5,2.5,1.5,3,1.5],mx=3,days=["M","T","W","T","F","S","S"];
+ $("#chart").innerHTML=d.map((h,i)=>{const bh=h/mx*120;return `<rect x="${i*50+10}" y="${135-bh}" width="30" height="${bh}" rx="6" fill="#6d5cff"/><text x="${i*50+25}" y="152" text-anchor="middle" font-size="12" fill="currentColor">${days[i]}</text><text x="${i*50+25}" y="${130-bh}" text-anchor="middle" font-size="11" fill="currentColor">${h}</text>`}).join("");
+ $("#prog").innerHTML=en.length?en.map((c,i)=>{const p=[72,45,28,60,15,35][COURSES.indexOf(c)]||20;return `<div class="row"><span>${esc(c)}</span><b>${p}%</b></div><div class="bar"><i style="width:${p}%"></i></div>`}).join(""):"<p>No courses yet. Enrol in one to see progress.</p>";
+ $("#enl").innerHTML=COURSES.map(c=>`<div class="row" style="padding:7px 0">${c}<button class="btn sm ${en.includes(c)?"o":""}" data-en="${c}">${en.includes(c)?"Enrolled":"Enrol"}</button></div>`).join("")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-en]");if(!b)return;let en=store.get("cm_enr",["Python Basics","Digital Electronics"]);const c=b.dataset.en;
+ if(en.includes(c)){en=en.filter(x=>x!==c);toast("Left "+c+".")}else{en.push(c);toast("Enrolled in "+c+". Paid courses will use hosted checkout.")}store.set("cm_enr",en);drawStudent()});
+// teacher
+function drawTeacher(){$("#th").textContent="Welcome, "+user.name;const c=store.get("cm_tc",[]);$("#cc").textContent=c.length;
+ $("#tc").innerHTML=c.length?c.map(x=>`<li class="row"><span>${esc(x.t)}<br><small>${esc(x.l)}</small></span><b>$${x.p}/hr</b></li>`).join(""):"<li>No courses yet. Create your first one on the left.</li>"}
+$("#cf").onsubmit=e=>{e.preventDefault();const t=$("#ct").value.trim(),p=+$("#cp").value;let ok=true;
+ $("#e-ct").textContent=t.length<3?(ok=false,"Give the course a title of at least 3 characters."):"";$("#e-cp").textContent=(p<5||p>500||isNaN(p)||!$("#cp").value)?(ok=false,"Enter a price from 5 to 500."):"";
+ if(!ok)return;const c=store.get("cm_tc",[]);c.push({t,l:$("#cl").value,p});store.set("cm_tc",c);$("#cf").reset();drawTeacher();toast("Course saved in this browser (demo).")};
+// tutors
+const T=[["Dr. Ananya Rao","Ph.D. · VLSI Design, Digital Electronics","Degree",28,4.9,["Sat 10:00","Mon 18:00","Wed 19:00"]],["Prof. Marcus Lindqvist","M.Sc. · Quantum Mechanics, Astrophysics","Postgraduate",34,4.8,["Tue 17:00","Thu 20:00"]],["Sara Okafor","M.Tech · Python, Machine Learning","Degree",22,4.9,["Mon 16:00","Fri 18:30"]],["Ravi Menon","B.Ed. · Maths and Physics, Grades 9–12","School",15,4.7,["Daily 17:00","Sun 11:00"]],["Dr. Elena Petrova","Ph.D. · Genetics, Molecular Biology","Postgraduate",42,5.0,["Wed 15:00","Sat 14:00"]],["Kofi Mensah","M.Sc. · Linear Algebra, Calculus","School",18,4.8,["Mon 19:00","Thu 18:00"]]];
+let cur=null;
+function drawTutors(){const q=$("#fs").value.toLowerCase(),l=$("#fl").value,b=+$("#fb").value;$("#fbv").textContent=b;
+ const r=T.map((t,i)=>[t,i]).filter(([t])=>(!q||(t[0]+t[1]).toLowerCase().includes(q))&&(!l||t[2]===l)&&t[3]<=b);
+ $("#tl").innerHTML=r.length?r.map(([t,i])=>`<article class="card"><h3 style="font-size:17px">${t[0]}</h3><p style="color:var(--mute);font-size:14px;margin:6px 0">${t[1]}</p><span class="pill">${t[2]}</span><div class="row" style="margin-top:14px"><b>$${t[3]}/hr · ★ ${t[4]}</b><button class="btn sm" data-bk="${i}">Book demo</button></div></article>`).join(""):"<p>No tutors match. Raise the budget or clear the subject.</p>"}
+["fs","fl","fb"].forEach(i=>$("#"+i).addEventListener("input",drawTutors));
+document.addEventListener("click",e=>{const b=e.target.closest("[data-bk]");if(!b)return;if(!user){toast("Log in to book a demo.");location.hash="#login";return}
+ cur=T[b.dataset.bk];$("#dt").textContent="Free demo with "+cur[0];$("#bs").innerHTML=cur[5].map(s=>`<option>${s}</option>`).join("");$("#dg").showModal()});
+$("#bc").onclick=()=>$("#dg").close();
+$("#bf").onsubmit=e=>{e.preventDefault();const bk=store.get("cm_bk",[]);bk.push({t:cur[0],s:$("#bs").value});store.set("cm_bk",bk);$("#dg").close();toast("Demo requested with "+cur[0]+", "+$("#bs").value+". Email confirmation needs a backend.")};
+// AI
+const sg=["Explain Ohm’s law","Make 3 practice questions on calculus","Create a revision plan for 2 weeks"];
+function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("#chat").appendChild(d);$("#chat").scrollTop=1e9}
+async function askAI(q){/* Replace with: const r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({q})}); return (await r.json()).answer; */
+ return "I’m not connected to an AI service yet, so I can’t answer “"+q+"” properly. Once your server route is set up, answers will appear here.";}
+add("Hi, I’m Scholar AI. I can explain concepts, make practice questions, summarise notes and help with code once an AI service is connected.","a");
+$("#sg").innerHTML=sg.map(s=>`<button type="button" class="btn o sm" data-sg="${s}">${s}</button>`).join("");
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sg]");if(b){$("#qi").value=b.dataset.sg;$("#qf").requestSubmit()}});
+$("#qf").onsubmit=async e=>{e.preventDefault();const q=$("#qi").value.trim();if(!q)return;add(q,"u");$("#qi").value="";add(await askAI(q),"a")};
+route();
+</script></body></html>
